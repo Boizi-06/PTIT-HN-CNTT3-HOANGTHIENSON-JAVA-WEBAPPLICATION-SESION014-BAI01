@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.0.5'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.re'
+version = '0.0.1-SNAPSHOT'
+description = 'session14_01'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 1. Thư viện Web (Controller, REST)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // 2. Thư viện làm giao diện HTML
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // 3. [QUAN TRỌNG NHẤT]: Thư viện JPA (Hibernate) để làm việc với @Entity
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // 4. Driver kết nối cơ sở dữ liệu MySQL
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // 5. Lombok (Bộ đôi bắt buộc phải đi liền với nhau)
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // 6. Công cụ hỗ trợ Reload server nhanh
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // 7. Thư viện Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
